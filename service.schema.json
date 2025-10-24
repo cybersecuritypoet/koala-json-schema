@@ -43,52 +43,8 @@
             "description" : "List of endpoints for the service.",
             "items" :
             {
-                "type" : "object",
-                "additionalProperties" : false,
-                "properties" :
-                {
-                    "proto":
-                    {
-                        "type" : "string",
-                        "description" : "Protocol for the endpoint."
-                    },
-                    "network":
-                    {
-                        "type" : "string",
-                        "description" : "Network name, for network-bound endpoints."
-                    },
-                    "port":
-                    {
-                        "type" : "integer",
-                        "description" : "TCP/UDP port to use for the service."
-                    },
-                    "port_range":
-                    {
-                        "type" : "object",
-                        "additionalProperties" : false,
-                        "description" : "TCP/UDP port range to use for the service.",
-                        "properties":
-                        {
-                            "start":
-                            {
-                                "type" : "integer",
-                                "minimum" : 1,
-                                "maximum" : 65535
-                            },
-                            "end":
-                            {
-                                "type" : "integer",
-                                "minimum" : 1,
-                                "maximum" : 65535
-                            }
-                        }
-                    },
-                    "program":
-                    {
-                        "type" : "string",
-                        "description" : "Program path/name that runs the service listener."
-                    }
-                }
+                "description" : "Service Endpoint",
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/service.endpoint.schema.json"
             }
         }
     }

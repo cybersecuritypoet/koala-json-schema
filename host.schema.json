@@ -66,13 +66,33 @@
         {
             "type" : ["string","null"],
             "description" : "Host type.",
-            "enum" : ["rpi4","x86","mikrotik-crs112-8p","mikrotik-hex-poe","mikrotik-wap-ac-ipq4018","mikrotik-wap-ac-ipq4019","mikrotik-wap-ac-qca9556","mikrotik-rblhgr","mikrotik-audience","mikrotik-crs328-24p-4s","mikrotik-crs326-24g-2s","mikrotik-crs317-1g-16s","mikrotik-map-lite","mikrotik-cap-lite","lenovo_m93p_tiny","dell_wyse_5070","mff_x86","virtual","external","mikrotik-rb5009u"]
+            "enum" : [
+                        "RPi4",
+                        "x86",
+                        "Mikrotik-CRS112-8P",
+                        "Mikrotik-hEX-PoE",
+                        "Mikrotik-wAP-AC-IPQ4018",
+                        "Mikrotik-wAP-AC-IPQ4019",
+                        "Mikrotik-wAP-AC-QCA9556",
+                        "Mikrotik-RBLHGR",
+                        "Mikrotik-Audience",
+                        "Mikrotik-CRS328-24P-4S",
+                        "Mikrotik-CRS326-24G-2S",
+                        "Mikrotik-CRS317-1G-16S",
+                        "Mikrotik-mAP-lite",
+                        "Mikrotik-cAP-lite",
+                        "Mikrotik-RB5009U",
+                        "Lenovo_M93p_tiny",
+                        "Dell_Wyse_5070",
+                        "MFF_x86",
+                        "Virtual",
+                        "External"]
         },
         "os":
         {
             "type" : ["string","null"],
             "description" : "OS the host will run.",
-            "enum" : ["slackware-15","routeros6","routeros7","slackwareaarch64-15"]
+            "enum" : ["Slackware-15","RouterOS6","RouterOS7","SlackwareAARCH64-15"]
         },
         "domain":
         {
@@ -120,7 +140,24 @@
             {
                 "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.port.schema.json"
             }
+        },
+        "services":
+        {
+            "type" : ["array"],
+            "description" : "List of services to define for the host.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/service.schema.json"
+            }
+        },
+        "bridges":
+        {
+            "type" : ["array"],
+            "description" : "List of bridges defined for host.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.bridge.schema.json"
+            }
         }
-
     }
 }
