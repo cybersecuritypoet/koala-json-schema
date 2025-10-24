@@ -1,0 +1,106 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.firewall.schema.json",
+    "title" : "Host Firewall definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "profile":
+        {
+            "type" : ["string"],
+            "description" : "[Not Used] Profile name."
+        },
+        "default_allow_in":
+        {
+            "type" : ["boolean"],
+            "description" : "Should IN traffic be allowed by default?"
+        },
+        "default_allow_out":
+        {
+            "type" : ["boolean"],
+            "description" : "Should OUT traffic be allowed by default?"
+        },
+        "default_allow_fwd":
+        {
+            "type" : ["boolean"],
+            "description" : "Should FWD traffic be allowed by default?"
+        },
+        "domain_enabled":
+        {
+            "type" : ["boolean"],
+            "description" : "Should firewall be enabled for 'domain' networks?"
+        },
+        "public_enabled":
+        {
+            "type" : ["boolean"],
+            "description" : "Should firewall be enabled for 'public' networks?"
+        },
+        "private_enabled":
+        {
+            "type" : ["boolean"],
+            "description" : "Should firewall be enabled for 'private' networks?"
+        },
+        "domain_default_allow_in":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should IN traffic be allowed by default for 'domain' networks?"
+        },
+        "domain_default_allow_out":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should OUT traffic be allowed by default for 'domain' networks?"
+        },
+        "domain_default_allow_fwd":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should FWD traffic be allowed by default for 'domain' networks?"
+        },
+        "public_default_allow_in":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should IN traffic be allowed by default for 'public' networks?"
+        },
+        "public_default_allow_out":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should OUT traffic be allowed by default for 'public' networks?"
+        },
+        "public_default_allow_fwd":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should FWD traffic be allowed by default for 'public' networks?"
+        },
+        "private_default_allow_in":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should IN traffic be allowed by default for 'private' networks?"
+        },
+        "private_default_allow_out":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should OUT traffic be allowed by default for 'private' networks?"
+        },
+        "private_default_allow_fwd":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Should FWD traffic be allowed by default for 'private' networks?"
+        },
+        "NAT_masquerade_networks":
+        {
+            "type" : ["array"],
+            "description" : "Networks used for NAT Masquerade on a router.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        }
+    }
+}

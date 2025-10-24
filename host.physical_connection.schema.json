@@ -1,0 +1,74 @@
+
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.physical_connection.schema.json",
+    "title" : "Host Physical Connection definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf":
+    [
+        {
+            "oneOF" :
+            [
+                {
+                    "required" : ["port"]
+                },
+                {
+                    "required" : ["port_id"]
+                }
+            ]
+        },
+        {
+            "required" : ["dev"]
+        },
+        {
+            "oneOF" :
+            [
+                {
+                    "required" : ["dev_port"]
+                },
+                {
+                    "required" : ["dev_port_id"]
+                }
+            ]
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "port":
+        {
+            "type" : ["string"],
+            "description" : "Local port name."
+        },
+        "dev":
+        {
+            "type" : ["string"],
+            "description" : "Destination device name."
+        },
+        "dev_port":
+        {
+            "type" : ["string"],
+            "description" : "Destination device port name."
+        },
+        "dev_port_id":
+        {
+            "type" : ["integer","null"],
+            "description" : "Destination device port ID."
+        },
+        "allowed_networks":
+        {
+            "type" : ["string","null"],
+            "description" : "Networks to be allowed on this connection. Used to limit VLANs on this link.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        }
+    }
+}

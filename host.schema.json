@@ -106,6 +106,16 @@
             "description" : "OS the host will run.",
             "enum" : ["Slackware-15","RouterOS6","RouterOS7","SlackwareAARCH64-15"]
         },
+        "pn":
+        {
+            "type" : ["string","null"],
+            "description" : "P/N"
+        },
+        "sn":
+        {
+            "type" : ["string","null"],
+            "description" : "S/N"
+        },
         "domain":
         {
             "type" : ["string","null"],
@@ -170,6 +180,21 @@
             {
                 "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.bridge.schema.json"
             }
+        },
+        "physical_connections":
+        {
+            "type" : ["array"],
+            "description" : "List of physical connections between this host and others.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.physical_connection.schema.json"
+            }
+        },
+        "firewall":
+        {
+            "type" : ["object"],
+            "description" : "Host firewall configuration.",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.firewall.schema.json"
         }
     }
 }

@@ -1,0 +1,54 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.bridge.schema.json",
+    "title" : "Bridge Schema",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" :
+            [
+                "name"
+            ]
+        }
+    ],
+    "properties":
+    {
+        "name":
+        {
+            "type" : "string",
+            "description" : "Protocol for the endpoint."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "port_ids" :
+        {
+            "type" : ["array","null"],
+            "description" : "IDs of ports to add to the bridge",
+            "items" :
+            {
+                "type" : "integer"
+            }
+        },
+        "ports" :
+        {
+            "type" : ["array","null"],
+            "description" : "Names of ports to add to the bridge",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "stp_mode":
+        {
+            "type" : ["string","null"],
+            "description" : "STP protocol mode.",
+            "enum" : [null,"STP","RSTP","MSTP"]
+        }
+    }
+}
