@@ -8,15 +8,27 @@
     "allOf" :
     [
         {
-            "required" : ["name","type","os","networks"]
+            "required" : ["name","type"]
         },
         {
-            "oneOf" :
-            [
-                {
-                    "required" : ["vm_id","vm_uuid",""]
-                }
-            ]
+            "if" :
+            {
+                "properties" : { "type" : { "const": "Virtual" } }
+            },
+            "then" :
+            {
+                "required" : ["vm_id","vm_uuid","hypervisor"]
+            }
+        },
+        {
+            "if" :
+            {
+                "properties" : { "type" : { "not" : { "const": "External" } } }
+            },
+            "then" :
+            {
+                "required" : ["os","networks"]
+            }
         }
     ],
     "properties":
