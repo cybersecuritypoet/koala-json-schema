@@ -1,0 +1,161 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/firewall_rule.schema.json",
+    "title" : "Fireall rule definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Host Group name",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "src" :
+        {
+            "description" : "Source Endpoint",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/firewall_rule.endpoint.schema.json"
+        },
+        "dst" :
+        {
+            "description" : "Destination Endpoint",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/firewall_rule.endpoint.schema.json"
+        },
+        "priority":
+        {
+            "type" : ["integer","null"],
+            "description" : "Priority to be assigned to the rule. Affects ordering. (default: 1024)"
+        },
+        "action":
+        {
+            "type" : ["string"],
+            "description" : "Action of the firewall rule.",
+            "enum" : ["accept", "drop", "reject", "log"]
+        },
+        "src_port":
+        {
+            "type" : ["integer","null"],
+            "description" : "Source TCP/UDP port. Overrides whatever was set on the endpoint level."
+        },
+        "src_port_range":
+        {
+            "type" : "object",
+            "additionalProperties" : false,
+            "description" : "Source TCP/UDP port range. Overrides whatever was set on the endpoint level.",
+            "properties":
+            {
+                "start":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                },
+                "end":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                }
+            }
+        },
+        "dst_port":
+        {
+            "type" : ["integer","null"],
+            "description" : "Destination TCP/UDP port. Overrides whatever was set on the endpoint level."
+        },
+        "dst_port_range":
+        {
+            "type" : "object",
+            "additionalProperties" : false,
+            "description" : "Destination TCP/UDP port range. Overrides whatever was set on the endpoint level.",
+            "properties":
+            {
+                "start":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                },
+                "end":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                }
+            }
+        },
+        "proto":
+        {
+            "type" : ["string"],
+            "description" : "Protocol. Overrides whatever was set on the endpoint level.",
+            "enum" : ["UDP", "TCP", "ICMP", "ICMP6", "VRRP"]
+        },
+        "src_program":
+        {
+            "type" : ["string"],
+            "description" : "Source program. Overrides whatever was set on the endpoint level."
+        },
+        "dst_program":
+        {
+            "type" : ["string"],
+            "description" : "Destination program. Overrides whatever was set on the endpoint level."
+        },
+        "src_service":
+        {
+            "type" : ["string"],
+            "description" : "Source service. Overrides whatever was set on the endpoint level."
+        },
+        "dst_service":
+        {
+            "type" : ["string"],
+            "description" : "Destination servoce. Overrides whatever was set on the endpoint level."
+        },
+        "interface_type":
+        {
+            "type" : ["string"],
+            "description" : "Used on windows. Only apply the rule on the selected interface types."
+        },
+        "icmp_code":
+        {
+            "type" : ["integer","null"],
+            "description" : "ICMP code that the firewall rule applies to."
+        },
+        "icmp_type":
+        {
+            "type" : ["integer","null"],
+            "description" : "ICMP type that the firewall rule applies to."
+        },
+        "helper":
+        {
+            "type" : ["string"],
+            "description" : "Firewall helper uesd by this rule."
+        }
+    }
+}

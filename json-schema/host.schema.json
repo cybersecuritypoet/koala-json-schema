@@ -1,0 +1,126 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.schema.json",
+    "title" : "Host definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : ["name","type","os","networks"]
+        },
+        {
+            "oneOf" :
+            [
+                {
+                    "required" : ["vm_id","vm_uuid",""]
+                }
+            ]
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip loading object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Host name",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "vm_id":
+        {
+            "type" : ["integer","null"],
+            "description" : "VM ID, unique per hypervisor."
+        },
+        "vm_uuid":
+        {
+            "type" : ["string","null"],
+            "format" : "uuid",
+            "description" : "VM UUID, unique per hypervisor."
+        },
+        "hostname":
+        {
+            "type" : ["string","null"],
+            "description" : "Hostname override."
+        },
+        "type":
+        {
+            "type" : ["string","null"],
+            "description" : "Host type.",
+            "enum" : ["rpi4","x86","mikrotik-crs112-8p","mikrotik-hex-poe","mikrotik-wap-ac-ipq4018","mikrotik-wap-ac-ipq4019","mikrotik-wap-ac-qca9556","mikrotik-rblhgr","mikrotik-audience","mikrotik-crs328-24p-4s","mikrotik-crs326-24g-2s","mikrotik-crs317-1g-16s","mikrotik-map-lite","mikrotik-cap-lite","lenovo_m93p_tiny","dell_wyse_5070","mff_x86","virtual","external","mikrotik-rb5009u"]
+        },
+        "os":
+        {
+            "type" : ["string","null"],
+            "description" : "OS the host will run.",
+            "enum" : ["slackware-15","routeros6","routeros7","slackwareaarch64-15"]
+        },
+        "domain":
+        {
+            "type" : ["string","null"],
+            "description" : "Override host domain deduction."
+        },
+        "hypervisor":
+        {
+            "type" : ["string","null"],
+            "description" : "Assign hypervisor to host."
+        },
+        "trunk_if":
+        {
+            "type" : ["string","null"],
+            "description" : "Use particular NIC by default when creating VLAN interfaces and virtual switches."
+        },
+        "default_vswitch":
+        {
+            "type" : ["string","null"],
+            "description" : "Use particular vswitch by default for VM connections."
+        },
+        "NICs":
+        {
+            "type" : ["array"],
+            "description" : "List of NICs to be configured/created.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.nic.schema.json"
+            }
+        },
+        "networks":
+        {
+            "type" : ["array"],
+            "description" : "List of networks to add to the host.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.network.schema.json"
+            }
+        },
+        "ports":
+        {
+            "type" : ["array"],
+            "description" : "List of ports to add to the host.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.port.schema.json"
+            }
+        }
+
+    }
+}

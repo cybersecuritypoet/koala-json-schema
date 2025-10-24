@@ -1,0 +1,64 @@
+{
+    "_$id" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_wireless_network.schema.json",
+    "title" : "IEEE 802.11 wireless network.",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "required" : ["network","security_profile","SSID"],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Name of the security profile.",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "network":
+        {
+            "type" : "string",
+            "description": "Network name.",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "security_profile":
+        {
+            "type" : "string",
+            "description": "Security profile name.",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "SSID":
+        {
+            "type" : "string",
+            "description": "SSID for this network.",
+            "pattern" : "^[a-zA-Z0-9_\\.\\-\\s]+$"
+        },
+        "broadcast_SSID":
+        {
+            "type" : "boolean",
+            "description": "Enables/disables broadcasting of SSID."
+        },
+        "default_authenticate":
+        {
+            "type" : "boolean",
+            "description": "Enables/disables default behaviour for authentication."
+        }
+    }
+}

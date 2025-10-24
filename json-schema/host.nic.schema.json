@@ -1,0 +1,58 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.nic.schema.json",
+    "title" : "Host NIC definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "NIC name."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "device":
+        {
+            "type" : ["string"],
+            "description" : "Device to which the NIC should be connected."
+        },
+        "dev_port_ID":
+        {
+            "type" : ["integer"],
+            "description" : "Device port ID to which the NIC should be connected."
+        },
+        "dev_port":
+        {
+            "type" : ["string"],
+            "description" : "Device port name to which the NIC should be connected."
+        },
+        "type":
+        {
+            "type" : ["string"],
+            "description" : "NIC type."
+        },
+        "MAC":
+        {
+            "type" : ["string"],
+            "description" : "MAC address to be used on the NIC.",
+            "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$"
+        }
+    }
+}

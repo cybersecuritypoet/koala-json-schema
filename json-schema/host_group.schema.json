@@ -1,0 +1,136 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host_group.schema.json",
+    "title" : "Host Group definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Host Group name",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "short_name":
+        {
+            "type" : ["string","null"],
+            "description" : "Name to be used for ipset if the original name is too long.",
+            "pattern" : "^[a-zA-Z0-9_\\-]{1,31}$"
+        },
+        "set_type":
+        {
+            "type" : ["string"],
+            "description" : "Type of ipset to use on Linux."
+        },
+        "size":
+        {
+            "type" : ["integer"],
+            "description" : "Force the size of the created ipset."
+        },
+        "IPs":
+        {
+            "type" : ["array","null"],
+            "description" : "List of IP addresses.",
+            "items":
+            {
+                "type" : "string",
+                "format" : "ip-address"
+            }
+        },
+        "subnets":
+        {
+            "type" : ["array","null"],
+            "description" : "List of IP addresses.",
+            "items":
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties":
+                {
+                    "ip":
+                    {
+                        "type" : "string",
+                        "format" : "ip-address"
+                    },
+                    "prefix_len":
+                    {
+                        "type" : "integer",
+                        "minimum" : 0,
+                        "maximum" : 32
+                    }
+                }
+            }
+        },
+        "hosts":
+        {
+            "type" : ["array","null"],
+            "description" : "List of hosts.",
+            "items":
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties":
+                {
+                    "host":
+                    {
+                        "type" : "string"
+                    },
+                    "network":
+                    {
+                        "type" : "string"
+                    }
+                }
+            }
+        },
+        "networks":
+        {
+            "type" : ["array","null"],
+            "description" : "List of networks.",
+            "items":
+            {
+                "type" : "string"
+            }
+        },
+        "Internet":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Defines whether this host group is on the Internet."
+        },
+        "host_groups":
+        {
+            "type" : ["array","null"],
+            "description" : "List of host groups to include in this group.",
+            "items":
+            {
+                "type" : "string"
+            }
+        }
+    }
+}

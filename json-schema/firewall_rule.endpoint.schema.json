@@ -1,0 +1,101 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/firewall_rule.endpoint.schema.json",
+    "title" : "Fireall rule endpoint definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "Internet":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Sets this endpoint as Internet endpoint."
+        },
+        "host":
+        {
+            "type" : ["string","null"]
+        },
+        "service":
+        {
+            "type" : ["string","null"],
+            "description" : "Service this endpoint is connected to."
+        },
+        "service_endpoints":
+        {
+            "type" : ["array","null"],
+            "description" : "Service endpoints this fw rule endpoint is connected to.",
+            "items":
+            {
+                "type" : "string"
+            }
+        },
+        "port":
+        {
+            "type" : ["integer"],
+            "description" : "UDP/TCP port to be used for the endpoint."
+        },
+        "port_range":
+        {
+            "type" : "object",
+            "additionalProperties" : false,
+            "description" : "TCP/UDP port range to use for the endpoint.",
+            "properties":
+            {
+                "start":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                },
+                "end":
+                {
+                    "type" : "integer",
+                    "minimum" : 1,
+                    "maximum" : 65535
+                }
+            }
+        },
+        "proto":
+        {
+            "type" : ["string"],
+            "description" : "Protocol for the firewall endpoint."
+        },
+        "network":
+        {
+            "type" : ["string"],
+            "description" : "NEtwork for the firewall endpoint."
+        },
+        "host_group":
+        {
+            "type" : ["string"],
+            "description" : "Host Group for the firewall endpoint."
+        },
+        "program":
+        {
+            "type" : ["string"],
+            "description" : "Program for the firewall endpoint."
+        },
+        "network_filter":
+        {
+            "type" : ["boolean"],
+            "description" : "Enabler/Disable rendering of network (on IP level) filters."
+        },
+        "set_filter":
+        {
+            "type" : ["boolean"],
+            "description" : "Enabler/Disable rendering of set filters."
+        }
+    }
+}        

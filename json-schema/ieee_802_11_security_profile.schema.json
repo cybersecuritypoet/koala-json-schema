@@ -1,0 +1,105 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "_$id" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_security_profile.schema.json",
+    "title" : "IEEE 802.11 network security profile.",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "required" : ["type"],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Name of the security profile.",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "mikrotik_mgmt_frame_protect":
+        {
+            "type" : "string",
+            "description": "Mikrotik-spcific management frame protection.",
+            "enum" : ["disabled", "allowed", "required"]
+        },
+        "mikrotik_mgmt_frame_protect_PSK":
+        {
+            "type" : "string",
+            "description": "Mikrotik-spcific management frame protection PSK.",
+            "minLength": 8,
+            "maxLength": 63
+        },
+        "type":
+        {
+            "type" : "string",
+            "description": "Security perofile type. Supports: WPA2-PSK, WPA2-EAP, WPA3-PSK, WPA3-EAP, WPA3-EAP-192, OWE",
+            "enum" : ["WPA2-PSK", "WPA2-EAP", "WPA3-PSK", "WPA3-EAP", "WPA3-EAP-192", "OWE"]
+        },
+        "PMKID":
+        {
+            "type" : "boolean",
+            "description": "Enable/Disable PMKID use."
+        },
+        "unicast_ciphers":
+        {
+            "type" : "array",
+            "description": "List of allowed unicast ciphers.",
+            "items":
+            {
+                "type" : "string",
+                "enum" : ["CCMP", "CCMP-256", "GCMP", "GCMP-256", "AES128_CCM", "TKIP" ]
+            }
+        },
+        "group_ciphers":
+        {
+            "type" : "array",
+            "description": "List of allowed group ciphers.",
+            "items":
+            {
+                "type" : "string",
+                "enum" : ["CCMP", "CCMP-256", "GCMP", "GCMP-256", "AES128_CCM", "TKIP" ]
+            }
+        },
+        "group_key_update":
+        {
+            "type" : "string",
+            "description": "Group key update interval."
+        },
+        "PSK":
+        {
+            "type" : "string",
+            "description": "PSK",
+            "minLength": 0,
+            "maxLength": 63
+        },
+        "EAP_method":
+        {
+            "type" : "string",
+            "description": "EAP method for WPA.",
+            "enum" : ["EAP-TLS", "EAP-TTLS-MSCHAPV2", "PEAP", "TTLS", "TLS"]
+        },
+        "dh_groups":
+        {
+            "type" : "array",
+            "description": "List of allowed dh groups. Used in WPA3.",
+            "enum" : [19, 20, 21]
+        }
+    }
+}

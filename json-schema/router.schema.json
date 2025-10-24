@@ -1,0 +1,146 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/router.schema.json",
+    "title" : "Router Schema",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "oneOf" : 
+            [
+                {
+                    "required" : ["vrrp_instance"],
+                    "not" : 
+                    {
+                        "required" : ["vrrp_instances"]
+                    }
+                },
+                {
+                    "required" : ["vrrp_instances"],
+                    "not" : 
+                    {
+                        "required" : ["vrrp_instance"]
+                    }
+                }
+            ]
+        },
+        {
+            "required":
+            [
+                "name","type"
+            ]
+        },
+        {
+            "oneOf" : 
+            [
+                {
+                    "required" : ["host"],
+                    "not" : 
+                    {
+                        "required" : ["hosts"]
+                    }
+                },
+                {
+                    "required" : ["hosts"],
+                    "not" : 
+                    {
+                        "required" : ["host"]
+                    }
+                }
+            ]
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Name of the router instance",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "type":
+        {
+            "type" : "string",
+            "description": "Specifies the type of router infrastructure. Accepts: 'standalone' or 'vrrp-ha'",
+            "enum" : ["standalone","vrrp-ha"]
+        },
+        "host":
+        {
+            "type" : "string",
+            "description" : "Host that will run as a router (where router config will be deployed)",
+            "pattern" : "^[a-zA-Z0-9_\\-\\.]+$"
+        },
+        "hosts":
+        {
+            "type" : "array",
+            "description" : "Hosts that will run as a router (where router config will be deployed)",
+            "items" : 
+            {
+                "type" : "string",
+                "pattern" : "^[a-zA-Z0-9_\\-\\.]+$"
+            }
+        },
+        "vrrp_instance":
+        {
+            "description" : "VRRP instance to use on the router",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/vrrp_instance.schema.json"
+        },
+        "vrrp_instances":
+        {
+            "type" : "array",
+            "description" : "VRRP instances to use on the router",
+            "items" : 
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/vrrp_instance.schema.json"
+            }
+        },
+        "keepalived_config" :
+        {
+            "description" : "Keepalived config to apply to hosts",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/keepalived_config.schema.json"
+        },
+        "conntrackd_config" :
+        {
+            "description" : "Conntrackd config to apply to hosts",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/conntrackd_config.schema.json"
+        },
+        "NAT" :
+        {
+            "type" : "object",
+            "additionalProperties" : false,
+            "description" : "NAT configuration. NOT SUPPORTED.",
+            "properties":
+            {
+                "masquerade_networks" :
+                {
+                    "type" : "array",
+                    "items" :
+                    {
+                        "type" : "string"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/vrrp_instance.schema.json",
+    "title" : "VRRP Instance config",
+    "description" : "Configures VRRP instance for keepalived or other implementation.",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf":
+    [
+        {
+            "required" : ["name","router_id","network","peers"]
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Name of the vrrp instance",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "router_id":
+        {
+            "type" : "integer",
+            "description" : "router_id VRRP config option"
+        },
+        "advert_int":
+        {
+            "type" : "integer",
+            "description" : "Advertisement interval parameter of VRRP configuration"
+        },
+        "network":
+        {
+            "type" : "string",
+            "description" : "Network that will be used for VRRP communication",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "password":
+        {
+            "type" : "string",
+            "description" : "Password that will be used to secure VRRP communication"
+        },
+        "peers":
+        {
+            "type" : "array",
+            "description" : "List of peers",
+            "minItems" : 2,
+            "items":
+            {
+                "additionalProperties" : false,
+                "allOf":
+                [
+                    {
+                        "required" : ["host","priority"]
+                    }
+                ],
+                "properties":
+                {
+                    "host": 
+                    {
+                        "type" : "string",
+                        "description" : "Peer host",
+                        "pattern" : "^[a-zA-Z0-9_\\-\\.]+$"
+                    },
+                    "priority": 
+                    {
+                        "type" : "integer",
+                        "description" : "Peer priority in VRRP"
+                    }
+                }
+            }
+        },
+        "settings":
+        {
+            "type" : "array",
+            "description" : "Additional settings",
+            "items":
+            {
+                "additionalProperties" : false,
+                "required" : ["name","value"],
+                "properties":
+                {
+                    "name": 
+                    {
+                        "type" : "string",
+                        "description" : "Setting name",
+                        "pattern" : "^[a-zA-Z0-9_]+$"
+                    },
+                    "value": 
+                    {
+                        "type" : "string",
+                        "description" : "Setting value"
+                    }
+                }
+            }
+        },
+        "force_master":
+        {
+            "type" : "boolean",
+            "description" : "Controls whether `state MASTER` is set for MASTER node based on priority"
+        },
+        "promote_secondaries":
+        {
+            "type" : "boolean",
+            "description" : "promote_secondaries VRRP config option"
+        },
+        "accept":
+        {
+            "type" : "boolean",
+            "description" : "accept VRRP config option"
+        },
+        "preempt":
+        {
+            "type" : "boolean",
+            "description" : "preempt VRRP config option"
+        },
+        "preempt_delay":
+        {
+            "type" : "integer",
+            "description" : "preempt_delay VRRP config option"
+        }
+    }
+}

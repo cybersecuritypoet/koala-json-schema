@@ -1,0 +1,78 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.nic.schema.json",
+    "title" : "Host NIC definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "arp_interval":
+        {
+            "type" : ["integer","null"],
+            "description" : "ARP Interval for ARP monitoring."
+        },
+        "arp_ip_targets":
+        {
+            "type" : ["string","null"],
+            "description" : "ARP IPs to use for ARP monitoring."
+        },
+        "lacp_rate":
+        {
+            "type" : ["string","null"],
+            "description" : "Rate for sending LACP PDUs on LACP links.",
+            "enum" : ["slow","fast"]
+        },
+        "downdelay":
+        {
+            "type" : ["integer","null"],
+            "description" : "Delay from fault detection to considering the interface down."
+        },
+        "updelay":
+        {
+            "type" : ["integer","null"],
+            "description" : "Delay from detection to considering the interface up."
+        },
+        "miimon":
+        {
+            "type" : ["integer","null"],
+            "description" : "Interval for miimon link monitoring. Enables miimon monitoring."
+        },
+        "primary":
+        {
+            "type" : ["string","null"],
+            "description" : "Port in bond to be used as primary."
+        },
+        "mode":
+        {
+            "type" : ["string","null"],
+            "description" : "Bonding mode.",
+            "emnum" : ["balance-rr","active-backup","balance-xor","broadcast","802.3ad","balance-tlb","balance-alb"]
+        },
+        "xmit_hash_policy":
+        {
+            "type" : ["string","null"],
+            "description" : "XMIT hash policy.",
+            "enum" : ["layer2","layer3+4","ecnap2+3","encap3+4"]
+        },
+        "use_carrier":
+        {
+            "type" : ["integer","null"],
+            "description" : "Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. netif_carrier_ok() to determine the link status."
+        },
+        "slaves":
+        {
+            "type" : ["array"],
+            "item":
+            {
+                "type" : ["string"]
+            }
+        }
+    }
+}

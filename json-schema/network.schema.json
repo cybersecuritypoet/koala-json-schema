@@ -1,0 +1,454 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/network.schema.json",
+    "title" : "Network definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : ["name","VLAN"]
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Network name",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "ipaddress":
+        {
+            "type" : "string",
+            "format": "ip-address",
+            "description" : "Network ipaddress"
+        },
+        "router_ip_offset":
+        {
+            "type" : "integer",
+            "description" : "IP that will be used by router as an offset from network ipaddress"
+        },
+        "prefix_len":
+        {
+            "type" : "integer",
+            "description" : "Network prefix length"
+        },
+        "VLAN":
+        {
+            "type" : "integer",
+            "description" : "VLAN to be used for the network",
+            "minimum" : 0,
+            "maximum" : 4095
+        },
+        "MTU":
+        {
+            "type" : "integer",
+            "description" : "MTU to be used on the network",
+            "minimum" : 1
+        },
+        "VRRP_instance_ID":
+        {
+            "type" : "integer",
+            "description" : "VRRP instance that the network should be the part of (on the router)",
+            "minimum" : 1
+        },
+        "promiscous":
+        {
+            "type" : "boolean",
+            "description" : "Promiscous operation of interface on router handling this network",
+            "minimum" : 1
+        },
+        "DNS_servers":
+        {
+            "type" : "array",
+            "description" : "Use the following DNS servers on hosts attached to this network.",
+            "items" :
+            {
+                "type" : "string",
+                "format" : "ip-address"
+            }
+        },
+        "domain":
+        {
+            "type" : "string",
+            "description" : "Use the following DNS domain name for this network. IF not defined, uses network name and the global DNS suffix."
+        },
+        "router":
+        {
+            "type" : "string",
+            "description" : "Name of the router the network will be connected to"
+        },
+        "default_ntp_server_names":
+        {
+            "type" : "array",
+            "description" : "Use the following NTP servers on hosts attached to this network.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "default_ntp_server_ips":
+        {
+            "type" : "array",
+            "description" : "Use the following NTP servers on hosts attached to this network.",
+            "items" :
+            {
+                "type" : "string",
+                "format" : "ip-address"
+            }
+        },
+        "DHCPD":
+        {
+            "type" : ["object","null"],
+            "description" : "DHCPD configuration for the network.",
+            "additionalProperties" : false,
+            "properties" :
+            {
+                "on_routers" :
+                {
+                    "type" : "boolean",
+                    "description" : "Host the dhcpd service on routers."
+                },
+                "add_server_firewall_rules" :
+                {
+                    "type" : "boolean",
+                    "description" : "Generate in/out firewall rules for DNS traffic on this network."
+                },
+                "fw_rule_in_name" :
+                {
+                    "type" : "string",
+                    "description" : "Don't touch unless you know what you are doing."
+                },
+                "fw_rule_out_name" :
+                {
+                    "type" : "string",
+                    "description" : "Don't touch unless you know what you are doing."
+                },
+                "servers" :
+                {
+                    "type" : "array",
+                    "description" : "List of servers to run DHCPD service on. Mutually exclusive with `on_routers` option."
+                },
+                "range_start_offset" :
+                {
+                    "type" : "integer",
+                    "description" : "DHCPD ip address range start."
+                },
+                "range_end_offset" :
+                {
+                    "type" : "integer",
+                    "description" : "DHCPD ip address range end."
+                },
+                "default_lease_time" :
+                {
+                    "type" : "integer",
+                    "description" : "Default DHCP lease time."
+                },
+                "max_lease_time" :
+                {
+                    "type" : "integer",
+                    "description" : "Max DHCP lease time."
+                },
+                "options" :
+                {
+                    "type" : "array",
+                    "description" : "Additional DHCP options.",
+                    "items":
+                    {
+                        "type" : "object",
+                        "additionalProperties" : false,
+                        "required" : ["name","value"],
+                        "properties" : 
+                        {
+                            "name":
+                            {
+                                "type" :  "string",
+                                "description" : "Name of the DHCP option."
+                            },
+                            "value":
+                            {
+
+                                "type" :  "string",
+                                "description" : "Value of the DHCP option."
+                            }
+                        }
+                    }
+                },
+                "dns_servers;" :
+                {
+                    "type" : "array",
+                    "description" : "List of DNS servers to provide via DHCP.",
+                    "items":
+                    {
+                        "type" : "string",
+                        "format" : "ip-address"
+                    }
+                },
+                "clients_host_group;" :
+                {
+                    "type" : "string",
+                    "description" : "Host group to use for auto generated firewall rules. Useful to group dns servers across multiple netowrks and minimize number of firewall rules."
+                },
+                "servers_host_group;" :
+                {
+                    "type" : "string",
+                    "description" : "Host group to use for auto generated firewall rules. Useful to group dns servers across multiple netowrks and minimize number of firewall rules."
+                }
+            }
+        },
+        "access_ports":
+        {
+            "type" : "array",
+            "description" : "List of access ports set to this network.",
+            "items" :
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "allOf":
+                [
+                    {
+                        "required" : ["device"]
+                    },
+                    {
+                        "oneOf":
+                        [
+                            {"required" :["port"]},
+                            {"required" :["port_id"]},
+                            {"required" :["ports"]},
+                            {"required" :["port_ids"]}
+                        ]
+                    }
+                ],
+                "properties" :
+                {
+                    "device" : 
+                    {
+                        "type" : "string",
+                        "description" : "Device host name where the port(s) are located."
+                    },
+                    "port" :
+                    {
+                        "type" : "string",
+                        "description" : "Port name on the selected device."
+                    },
+                    "port_id" :
+                    {
+                        "type" : "integer",
+                        "description" : "Port id on the selected device."
+                    },
+                    "ports" :
+                    {
+                        "type" : "array",
+                        "description" : "Port names on the selected device.",
+                        "items" : 
+                        {
+                            "type" : "string"
+                        }
+                    },
+                    "port_ids" :
+                    {
+                        "type" : "array",
+                        "description" : "Port ids on the selected device.",
+                        "items" : 
+                        {
+                            "type" : "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "tagged_ports":
+        {
+            "type" : "array",
+            "description" : "List of tagged ports set to this network.",
+            "items" :
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "allOf":
+                [
+                    {
+                        "required" : ["device"]
+                    },
+                    {
+                        "oneOf":
+                        [
+                            {"required" :["port"]},
+                            {"required" :["port_id"]},
+                            {"required" :["ports"]},
+                            {"required" :["port_ids"]}
+                        ]
+                    }
+                ],
+                "properties" :
+                {
+                    "device" : 
+                    {
+                        "type" : "string",
+                        "description" : "Device host name where the port(s) are located."
+                    },
+                    "port" :
+                    {
+                        "type" : "string",
+                        "description" : "Port name on the selected device."
+                    },
+                    "port_id" :
+                    {
+                        "type" : "integer",
+                        "description" : "Port id on the selected device."
+                    },
+                    "ports" :
+                    {
+                        "type" : "array",
+                        "description" : "Port names on the selected device.",
+                        "items" : 
+                        {
+                            "type" : "string"
+                        }
+                    },
+                    "port_ids" :
+                    {
+                        "type" : "array",
+                        "description" : "Port ids on the selected device.",
+                        "items" : 
+                        {
+                            "type" : "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "render_DNS_zone" :
+        {
+            "type" : "boolean",
+            "description" : "Controls whether a DNS zone should be rendered for this network."
+        },
+        "DNS_server_type" :
+        {
+            "type" : "string",
+            "description" : "Type of DNS server that will be used to host this network.",
+            "enum" : ["ISCBIND"]
+        },
+        "DNS_SOA_ns" :
+        {
+            "type" : "string",
+            "description" : "DNS zone SOA ns parameter"
+        },
+        "DNS_SOA_contact" :
+        {
+            "type" : "string",
+            "description" : "DNS zone SOA contact parameter"
+        },
+        "DNS_SOA_TTL" :
+        {
+            "type" : "integer",
+            "description" : "DNS zone SOA TTL parameter"
+        },
+        "DNS_SOA_refresh" :
+        {
+            "type" : "integer",
+            "description" : "DNS zone SOA refresh parameter"
+        },
+        "DNS_SOA_retry" :
+        {
+            "type" : "integer",
+            "description" : "DNS zone SOA retry parameter"
+        },
+        "DNS_SOA_expire" :
+        {
+            "type" : "integer",
+            "description" : "DNS zone SOA expire parameter"
+        },
+        "DNS_SOA_negative_caching_TTL" :
+        {
+            "type" : "integer",
+            "description" : "DNS zone SOA caching TTL parameter"
+        },
+        "DNS_name_servers" :
+        {
+            "type" : "array",
+            "description" : "DNS zone list of name servers",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "DNS_zone" :
+        {
+            "description" : "Additional DNS zone entries",
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" :
+            {
+                "hosts":
+                {
+                    "type" : "array",
+                    "items":
+                    {
+                        "type" : "object",
+                        "additionalProperties" : false,
+                        "properties" :
+                        {
+                            "name":
+                            {
+                                "type" : "string",
+                                "description" : "Host name",
+                                "pattern" : "^[a-zA-Z0-9_\\-]+$"
+                            },
+                            "offset":
+                            {
+                                "type" : "integer",
+                                "description" : "Offset from the network IP address to be used for this host."
+                            }
+                        }
+                    }
+                },
+                "cnames":
+                {
+                    "type" : "array",
+                    "items":
+                    {
+                        "type" : "object",
+                        "additionalProperties" : false,
+                        "properties" :
+                        {
+                            "name":
+                            {
+                                "type" : "string",
+                                "description" : "Host name.",
+                                "pattern" : "^[a-zA-Z0-9_\\-]+$"
+                            },
+                            "cname":
+                            {
+                                "type" : "string",
+                                "description" : "CNAME for the host.",
+                                "pattern" : "^[a-zA-Z0-9_\\-]+$"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

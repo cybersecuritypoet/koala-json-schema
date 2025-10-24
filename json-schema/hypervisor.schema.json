@@ -1,0 +1,183 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/hypervisor.schema.json",
+    "title" : "Hypervisor definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["bpp;eam","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Network name",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "templates":
+        {
+            "type" : ["array","null"],
+            "description" : "Templates to be applied to the object.",
+            "items" :
+            {
+                "type" : "string"
+            }
+        },
+        "default_vswitch":
+        {
+            "type" : ["string","null"],
+            "description" : "Name of the virtual switch to be used by default on this instance."
+        },
+        "host":
+        {
+            "type" : ["string"],
+            "description" : "Hypervisor host."
+        },
+        "type":
+        {
+            "type" : ["string"],
+            "description" : "Hypervisor type. Currently supported hypervisors: QEMU. Default: QEMU.",
+            "enum" : ["QEMU"]
+        },
+        "mac_range_start":
+        {
+            "type" : ["string"],
+            "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$",
+            "description" : "MAC address range that will be used on this hypervisor - start."
+        },
+        "mac_range_end":
+        {
+            "type" : ["string"],
+            "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$",
+            "description" : "MAC address range that will be used on this hypervisor - end."
+        },
+        "virtual_switches":
+        {
+            "type" : ["array"],
+            "description" : "Virtual switches to be defined on this host.",
+            "items" :
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties":
+                {
+                    "type" :
+                    {
+                        "type" : "string",
+                        "description" : "Virtual switch type"
+                    },
+                    "host_network" :
+                    {
+                        "type" : "string",
+                        "description" : "Network to which the vswitch will be connected."
+                    },
+                    "base_if" :
+                    {
+                        "type" : ["string","null"],
+                        "description" : "Interface to be used for creation of vswitch network."
+                    },
+                    "mac_range_start" :
+                    {
+                        "type" : ["string"],
+                        "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$",
+                        "description" : "MAC address range that will be used by host connected to this vswitch - start."
+                    },
+                    "mac_range_end" :
+                    {
+                        "type" : ["string"],
+                        "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$",
+                        "description" : "MAC address range that will be used by host connected to this vswitch - end."
+                    }
+                }
+            }
+        },
+        "TLS_creds":
+        {
+            "type" : ["array"],
+            "description" : "TLS Credential configuration for QEMU.",
+            "items" :
+            {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties":
+                {
+                    "id" :
+                    {
+                        "type" : "string",
+                        "description" : "Unique ID of the TLS cred object."
+                    },
+                    "dir" :
+                    {
+                        "type" : "string",
+                        "description" : "Directory for TLS creds."
+                    },
+                    "psk" :
+                    {
+                        "type" : "string",
+                        "description" : "PSK used by the TLS cred."
+                    },
+                    "verify_peer" :
+                    {
+                        "type" : "boolean",
+                        "description" : "Controls peer verification. On by default."
+                    },
+                    "endpoint" :
+                    {
+                        "type" : "string",
+                        "description" : "Endpoint to use."
+                    }
+                }
+            }
+        },
+        "root_path":
+        {
+            "type" : ["string"],
+            "description" : "Root path for QEMU."
+        },
+        "vnc_default_network":
+        {
+            "type" : ["string"],
+            "description" : "Network to use for VNC traffic by default."
+        },
+        "vnc_default_tls_creds":
+        {
+            "type" : ["string"],
+            "description" : "TLS creds to use for VNC traffic by default."
+        },
+        "vnc_default_allowed_identity_file":
+        {
+            "type" : ["string"],
+            "description" : "Allowed identities file to use for VNC traffic by default."
+        },
+        "vnc_default_lossy":
+        {
+            "type" : ["boolean"],
+            "description" : "Use lossy compression for VNC by default."
+        },
+        "vnc_default_non_adaptive":
+        {
+            "type" : ["boolean"],
+            "description" : "Use non adaptive VNC by default."
+        },
+        "vnc_default_power_control":
+        {
+            "type" : ["boolean"],
+            "description" : "Allow for power control over VNC by default."
+        }
+    }
+}

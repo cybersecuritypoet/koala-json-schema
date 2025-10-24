@@ -1,0 +1,73 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.nic.schema.json",
+    "title" : "Host NIC definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "Port name."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "type":
+        {
+            "type" : ["string","null"],
+            "description" : "Port type.",
+            "enum" : ["bond","null"]
+        },
+        "ID":
+        {
+            "type" : ["integer","null"],
+            "description" :"Port ID. Must be unique on device.",
+            "minimum" : 0
+        },
+        "MTU":
+        {
+            "type" : ["integer","null"],
+            "description" :"Maximum MTU supported by port.",
+            "minimum" : 0
+        },
+        "L2MTU":
+        {
+            "type" : ["integer","null"],
+            "description" :"Maximum L2MTU supported by port.",
+            "minimum" : 0
+        },
+        "MAC":
+        {
+            "type" : ["string","null"],
+            "description" :"MAC of the port being configured. Will be used to generate udev configuration on Linux.",
+            "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$"
+        },
+        "DHCPD_trusted":
+        {
+            "type" : ["boolean","null"],
+            "description" :"Enforces port as trusted for the purposes of DHCP snooping on bridges."
+        },
+        "bond_options":
+        {
+            "type" : ["object","null"],
+            "description" :"Configures bonding options for port of type 'bond'.",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.port.bond_options.schema.json"
+        }
+    }
+}

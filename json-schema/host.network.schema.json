@@ -1,0 +1,128 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.network.schema.json",
+    "title" : "Host network definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "Network name."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "network":
+        {
+            "type" : ["string"],
+            "description" : "Network to which this host network is connected."
+        },
+        "ip_offset":
+        {
+            "type" : ["integer"],
+            "description" : "Network IP address in the form of offset from network IP address."
+        },
+        "NIC":
+        {
+            "type" : ["string"],
+            "description" : "NIC to be used for this host network."
+        },
+        "base_NIC":
+        {
+            "type" : ["string"],
+            "description" : "TODO"
+        },
+        "domain":
+        {
+            "type" : ["boolean"],
+            "description" : "Use this network as main domain (and default) for the host."
+        },
+        "default_gw":
+        {
+            "type" : ["boolean"],
+            "description" : "Use this network for deafault gateway."
+        },
+        "gw_check":
+        {
+            "type" : ["string"],
+            "description" : "Sets up gateway checking."
+        },
+        "default_metric":
+        {
+            "type" : ["integer"],
+            "description" : "Use metric for default route."
+        },
+        "MAC":
+        {
+            "type" : ["string"],
+            "description" : "MAC address to be used on the NIC.",
+            "pattern": "^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$"
+        },
+        "use_dhcp":
+        {
+            "type" : ["boolean"],
+            "description" : "Obtain IP address through DHCP."
+        },
+        "dhcpc_keep_resolve":
+        {
+            "type" : ["boolean"],
+            "description" : "DHCP option to keep resolver configuration."
+        },
+        "dhcpc_keep_ntp":
+        {
+            "type" : ["boolean"],
+            "description" : "DHCP option to keep ntp configuration."
+        },
+        "dhcpc_keep_gw":
+        {
+            "type" : ["boolean"],
+            "description" : "DHCP option to keep gateway configuration."
+        },
+        "dhcpc_use_defconf":
+        {
+            "type" : ["boolean"],
+            "description" : "DHCP option to use default conf configuration."
+        },
+        "dhcpc_timeout":
+        {
+            "type" : ["integer"],
+            "description" : "dhcpc timeout."
+        },
+        "dhcpc_hostname":
+        {
+            "type" : ["string"],
+            "description" : "Hostname to be used by dhcpcd."
+        },
+        "ieee802_11":
+        {
+            "type" : ["boolean"],
+            "description" : "Specifies whether the network is ieee 802.11 wireless."
+        },
+        "dhcp":
+        {
+            "type" : ["boolean"],
+            "description" : "Turns dhcp on and off"
+        },
+        "access":
+        {
+            "type" : ["boolean"],
+            "description" : "Connect this network as access port."
+        }
+    }
+}

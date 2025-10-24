@@ -1,0 +1,129 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/config.json",
+    "title" : "Koala network config",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "properties":
+    {
+        "$schema" :
+        {
+            "type" : "string"
+        },
+        "components" : 
+        {
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" :
+            {
+                "routers" :
+                {
+                    "description" : "Router definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/router.schema.json"
+                    }
+                },
+                "networks" : 
+                {
+                    "description" : "Network definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/network.schema.json"
+                    }
+                },
+                "hypervisors" : 
+                {
+                    "description" : "Hypervisor definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/hypervisor.schema.json"
+                    }
+                },
+                "hosts" :
+                {
+                    "description" : "Host definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.schema.json"
+                    }
+                },
+                "services" :
+                {
+                    "description" : "Service definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/service.schema.json"
+                    }
+                },
+                "host_groups" :
+                {
+                    "description" : "Service definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host_group.schema.json"
+                    }
+                },
+                "firewall_rules" :
+                {
+                    "description" : "Service definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/firewall_rule.schema.json"
+                    }
+                },
+                "users" :
+                {
+                    "type" : "object",
+                    "additionalProperties" : false
+                },
+                "user_groups" :
+                {
+                    "type" : "object",
+                    "additionalProperties" : false
+                },
+                "ieee_802_11_security_profiles" :
+                {
+                    "description" : "IEEE 802.11 network security profile definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_security_profile.schema.json"
+                    }
+                },
+                "ieee_802_11_wireless_networks" :
+                {
+                    "description" : "IEEE 802.11 wireless network definitions",
+                    "type" : "array",
+                    "items" :
+                    {
+                        "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_wireless_network.schema.json"
+                    }
+                },
+                "ieee_802_11_wireless_network_access_lists" :
+                {
+                    "type" : "object",
+                    "additionalProperties" : false
+                },
+                "vrrp_instances" :
+                {
+                    "type" : "object",
+                    "additionalProperties" : false
+                },
+                "mstp_instances" :
+                {
+                    "type" : "object",
+                    "additionalProperties" : false
+                }
+            }
+        }
+    }
+}
