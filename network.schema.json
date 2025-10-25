@@ -89,6 +89,35 @@
                 "format" : "ip-address"
             }
         },
+        "default_dns_internal_servers" :
+        {
+            "type" : "array",
+            "description" : "List of hosts to be used as DNS servers",
+            "items" :
+            {
+                "type" : "object",
+                "properties": 
+                {
+                    "skip":
+                    {
+                        "type" : ["boolean","null"],
+                        "description" : "Skip object."
+                    },
+                    "host":
+                    {
+                        "type" : "string",
+                        "description" : "Host name, might include network.",
+                        "pattern" : "^[a-zA-Z0-9_\\-\\.]+$"
+                    },
+                    "network":
+                    {
+                        "type" : "string",
+                        "description" : "Network to use on the host for DNS.",
+                        "pattern" : "^[a-zA-Z0-9_\\-\\.]+$"
+                    }
+                }
+            }
+        },
         "domain":
         {
             "type" : "string",
