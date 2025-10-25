@@ -28,6 +28,11 @@
             "type" : ["string","null"],
             "description" : "Objects description."
         },
+        "type":
+        {
+            "type" : ["string","null"],
+            "description" : "External host network type."
+        },
         "network":
         {
             "type" : ["string"],
