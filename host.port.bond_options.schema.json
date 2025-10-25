@@ -63,7 +63,7 @@
         },
         "use_carrier":
         {
-            "type" : ["integer","null"],
+            "type" : ["boolean","null"],
             "description" : "Specifies whether or not miimon should use MII or ETHTOOL ioctls vs. netif_carrier_ok() to determine the link status."
         },
         "slaves":
