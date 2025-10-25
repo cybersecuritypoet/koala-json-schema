@@ -1,0 +1,59 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.vdisk.schema.json",
+    "title" : "virtual Host vdisk definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "type":
+        {
+            "type" : ["string","null"],
+            "description" : "Type of virtual disk."
+        },
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "[Not Used] Vdisk name."
+        },
+        "path":
+        {
+            "type" : ["string","null"],
+            "description" : "Path on the hypervisor where the Vdisk will be stored."
+        },
+        "driver":
+        {
+            "type" : ["string","null"],
+            "description" : "Hypervisor driver for the vdisk."
+        },
+        "dev":
+        {
+            "type" : ["string","null"],
+            "description" : "Device to use for passthrough Vdisk."
+        },
+        "prefix":
+        {
+            "type" : ["string","null"],
+            "description" : "Will be passed to the hypervisor layer."
+        },
+        "size":
+        {
+            "type" : ["string","null"],
+            "description" :"Vdisk size. Will be used on the hypervisor literally.",
+            "minimum" : 0
+        },
+        "size_GiB":
+        {
+            "type" : ["integer","null"],
+            "description" :"Vdisk size in GiB.",
+            "minimum" : 0
+        }
+    }
+}

@@ -64,17 +64,6 @@
                 "type" : "string"
             }
         },
-        "vm_id":
-        {
-            "type" : ["integer","null"],
-            "description" : "VM ID, unique per hypervisor."
-        },
-        "vm_uuid":
-        {
-            "type" : ["string","null"],
-            "format" : "uuid",
-            "description" : "VM UUID, unique per hypervisor."
-        },
         "hostname":
         {
             "type" : ["string","null"],
@@ -202,6 +191,36 @@
             "type" : ["object"],
             "description" : "Host firewall configuration.",
             "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.firewall.schema.json"
+        },
+        "vm_id":
+        {
+            "type" : ["integer","null"],
+            "description" : "VM ID, unique per hypervisor."
+        },
+        "vm_uuid":
+        {
+            "type" : ["string","null"],
+            "format" : "uuid",
+            "description" : "VM UUID, unique per hypervisor."
+        },
+        "smp":
+        {
+            "type" : ["integer","null"],
+            "description" : "Number of physical threads for VM."
+        },
+        "memory":
+        {
+            "type" : ["string","null"],
+            "description" : "Amounts of RAM memory assigned to the VM."
+        },
+        "vdisks":
+        {
+            "type" : ["array"],
+            "description" : "List of virtual disks to add to the VM.",
+            "items":
+            {
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.vdisk.schema.json"
+            }
         }
     }
 }
