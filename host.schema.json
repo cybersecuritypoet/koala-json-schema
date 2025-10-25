@@ -5,30 +5,36 @@
     "description" : "",
     "type" : "object",
     "additionalProperties" : false,
-    "allOf" :
+    "oneOf":
     [
+        { "properties" : { "skip" : { "const": true } } },
         {
-            "required" : ["name","type"]
-        },
-        {
-            "if" :
-            {
-                "properties" : { "type" : { "const": "Virtual" } }
-            },
-            "then" :
-            {
-                "required" : ["vm_id","vm_uuid","hypervisor"]
-            }
-        },
-        {
-            "if" :
-            {
-                "properties" : { "type" : { "not" : { "const": "External" } } }
-            },
-            "then" :
-            {
-                "required" : ["os","networks"]
-            }
+            "allOf" :
+            [
+                {
+                    "required" : ["name","type"]
+                },
+                {
+                    "if" :
+                    {
+                        "properties" : { "type" : { "const": "Virtual" } }
+                    },
+                    "then" :
+                    {
+                        "required" : ["vm_id","vm_uuid","hypervisor"]
+                    }
+                },
+                {
+                    "if" :
+                    {
+                        "properties" : { "type" : { "not" : { "const": "External" } } }
+                    },
+                    "then" :
+                    {
+                        "required" : ["os","networks"]
+                    }
+                }
+            ]
         }
     ],
     "properties":
