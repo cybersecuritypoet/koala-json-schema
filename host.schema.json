@@ -97,6 +97,7 @@
                         "Lenovo_M93p_tiny",
                         "Dell_Wyse_5070",
                         "MFF_x86",
+                        "APC_NMC2",
                         "Virtual",
                         "External"]
         },
@@ -104,7 +105,7 @@
         {
             "type" : ["string","null"],
             "description" : "OS the host will run.",
-            "enum" : ["Slackware-15","RouterOS6","RouterOS7","SlackwareAARCH64-15"]
+            "enum" : ["Slackware-15","RouterOS6","RouterOS7","SlackwareAARCH64-15","APC_NMC_AOS_7"]
         },
         "pn":
         {
