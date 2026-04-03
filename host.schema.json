@@ -114,6 +114,12 @@
 			"ShellyGen3"
 		]
         },
+        "wireless_driver":
+        {
+            "type" : ["string"],
+            "description" : "Driver to be used for the wireless device.",
+            "enum" : [null,"mikrotik-wireless", "mikrotik-wifiwave2"]
+        },
         "pn":
         {
             "type" : ["string","null"],

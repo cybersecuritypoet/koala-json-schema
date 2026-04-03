@@ -23,6 +23,11 @@
             "type" : ["string","null"],
             "description" : "Objects description."
         },
+        "enabled":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Enable the wireless device."
+        },
         "network":
         {
             "type" : ["string"],
