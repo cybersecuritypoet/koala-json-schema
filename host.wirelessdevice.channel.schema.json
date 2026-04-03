@@ -1,0 +1,44 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.channel.schema.json",
+    "title" : "Host WirelessDevice Channel definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "NIC name."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "ID":
+        {
+            "type" : ["number"],
+            "description" : "Channel ID."
+        },
+        "width":
+        {
+            "type" : ["number"],
+            "description" : "Channel width.",
+            "enum" : [null,5,10,20,40,80,160]
+        },
+        "control_channel_offset":
+        {
+            "type" : ["number"],
+            "description" : "Control Channel to use as an offset from original channel",
+            "maximum": 7
+        }
+    }
+}

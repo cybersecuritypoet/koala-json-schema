@@ -86,9 +86,12 @@
                         "Mikrotik-CRS328-24P-4S",
                         "Mikrotik-CRS326-24G-2S",
                         "Mikrotik-CRS317-1G-16S",
+                        "Mikrotik-CRS318-16P-2S",
                         "Mikrotik-mAP-lite",
                         "Mikrotik-cAP-lite",
                         "Mikrotik-RB5009U",
+                        "Shelly-PlugPlusS",
+                        "Shelly-PowerStrip",
                         "Lenovo_M93p_tiny",
                         "Dell_Wyse_5070",
                         "MFF_x86",
@@ -100,7 +103,16 @@
         {
             "type" : ["string","null"],
             "description" : "OS the host will run.",
-            "enum" : ["Slackware-15","RouterOS6","RouterOS7","SlackwareAARCH64-15","APC_NMC_AOS_7"]
+            "enum" : [
+			"Slackware-15",
+			"SlackwareAARCH64-15",
+			"RouterOS6",
+			"RouterOS7",
+			"APC_NMC_AOS_7",
+			"ShellyGen1",
+			"ShellyGen2",
+			"ShellyGen3"
+		]
         },
         "pn":
         {
@@ -185,6 +197,12 @@
             {
                 "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.physical_connection.schema.json"
             }
+        },
+        "wireless":
+        {
+            "type" : ["object"],
+            "description" : "Host wireless configuration.",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wireless.schema.json"
         },
         "firewall":
         {

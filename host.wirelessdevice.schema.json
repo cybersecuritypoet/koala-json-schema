@@ -1,0 +1,86 @@
+{
+    "$schema" : "https://json-schema.org/draft/2020-12/schema",
+    "$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.schema.json",
+    "title" : "Host WirelessDevice definition",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "allOf" :
+    [
+        {
+            "required" : []
+        }
+    ],
+    "properties":
+    {
+        "name":
+        {
+            "type" : ["string"],
+            "description" : "NIC name."
+        },
+        "desc":
+        {
+            "type" : ["string","null"],
+            "description" : "Objects description."
+        },
+        "network":
+        {
+            "type" : ["string"],
+            "description" : "Which wireless network should be connected to the wireless device."
+        },
+        "wireless_mode":
+        {
+            "type" : ["string"],
+            "description" : "Wireless mode for the device.",
+            "enum" : [null,"ieee_802_11"]
+        },
+        "device_mode":
+        {
+            "type" : ["string"],
+            "description" : "Device mode. Default: AP",
+            "enum" : [null,"station","AP","bridge"]
+        },
+        "driver":
+        {
+            "type" : ["string"],
+            "description" : "Driver to be used for the wireless device.",
+            "enum" : [null,"mikrotik-wireless", "mikrotik-wifiwave2"]
+        },
+        "installation":
+        {
+            "type" : ["string"],
+            "description" : "Device installation required for auto-config according to regulatory region limitations.",
+            "enum" : [null,"any","indoor","outdoor"]
+        },
+        "region":
+        {
+            "type" : ["string"],
+            "description" : "Regulatory region for the wireless device.",
+            "enum" : [null,"none","etsi","northamerica","japan","others"]
+        },
+        "band":
+        {
+            "type" : ["string"],
+            "description" : "Wireless band to use.",
+            "enum" : [null, "b", "g","n","b_g","b_g_n","a","ac","a_n","a_n_ac","n_ac"]
+        },
+        "frame_protection":
+        {
+            "type" : ["string"],
+            "description" : "Frame protection mechanism.",
+            "enum" : [null,"none", "cts-to-self","rts-cts"]
+        },
+        "channel":
+        {
+            "type" : ["object","null"],
+            "description" :"Configures primary wireless channel.",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.channel.schema.json"
+        },
+        "secondary_channel":
+        {
+            "type" : ["object","null"],
+            "description" :"Configures secondary wireless channel.",
+            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.channel.schema.json"
+        }
+    }
+}
