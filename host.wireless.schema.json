@@ -15,15 +15,23 @@
     {
         "devices":
         {
-            "type" : ["object","null"],
-            "description" : "Configures bonding options for port of type 'bond'.",
-            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.schema.json"
+            "type" : ["array","null"],
+            "description" : "Wireless devices.",
+            "items" :
+            {
+                "description" : "Wireless Device.",
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.schema.json"
+            }
         },
         "ieee_802_11_networks":
         {
-            "type" : ["object","null"],
+            "type" : ["array","null"],
             "description" : "IEEE 802.11 wireless networks.",
-            "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_wireless_network.schema.json"
+            "items" :
+            {
+                "description" : "Wireless network.",
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_wireless_network.schema.json"
+            }
         }
     }
 }
