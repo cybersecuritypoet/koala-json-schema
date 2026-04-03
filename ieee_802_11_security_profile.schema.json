@@ -33,6 +33,12 @@
                 "type" : "string"
             }
         },
+        "management_protection":
+        {
+            "type" : "string",
+            "description": "802.11w management frame protection.",
+            "enum" : ["disabled", "allowed", "required"]
+        },
         "mikrotik_mgmt_frame_protect":
         {
             "type" : "string",
