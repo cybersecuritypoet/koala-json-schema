@@ -1,0 +1,27 @@
+{
+    "_$id" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.ieee_802_11_wireless_network.schema.json",
+    "title" : "Host IEEE 802.11 wireless network.",
+    "description" : "",
+    "type" : "object",
+    "additionalProperties" : false,
+    "required" : ["name","device"],
+    "properties":
+    {
+        "skip":
+        {
+            "type" : ["boolean","null"],
+            "description" : "Skip object."
+        },
+        "name":
+        {
+            "type" : "string",
+            "description" : "Name of wireless network.",
+            "pattern" : "^[a-zA-Z0-9_\\-]+$"
+        },
+        "device":
+        {
+            "type" : ["string"],
+            "description" : "Wireless device to install the network on."
+        }
+    }
+}

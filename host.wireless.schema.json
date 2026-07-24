@@ -30,7 +30,7 @@
             "items" :
             {
                 "description" : "Wireless network.",
-                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/ieee_802_11_wireless_network.schema.json"
+                "$ref" : "https://cybersecuritypoet.github.io/koala-json-schema/host.wirelessdevice.ieee_802_11_wireless_network.schema.json"
             }
         }
     }
