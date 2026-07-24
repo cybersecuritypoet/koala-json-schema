@@ -55,8 +55,8 @@
         "type":
         {
             "type" : "string",
-            "description": "Security perofile type. Supports: WPA2-PSK, WPA2-EAP, WPA3-PSK, WPA3-EAP, WPA3-EAP-192, OWE",
-            "enum" : ["WPA2-PSK", "WPA2-EAP", "WPA3-PSK", "WPA3-EAP", "WPA3-EAP-192", "OWE"]
+            "description": "Security perofile type. Supports: WPA2-PSK, WPA2-EAP, WPA3-PSK, WPA2/3-PSK, WPA3-EAP, WPA3-EAP-192, OWE",
+            "enum" : ["WPA2-PSK", "WPA2-EAP", "WPA3-PSK", "WPA2/3-PSK", "WPA3-EAP", "WPA3-EAP-192", "OWE"]
         },
         "PMKID":
         {
@@ -67,6 +67,7 @@
         {
             "type" : "array",
             "description": "List of allowed unicast ciphers.",
+            "uniqueItems": true,
             "items":
             {
                 "type" : "string",
@@ -77,11 +78,18 @@
         {
             "type" : "array",
             "description": "List of allowed group ciphers.",
+            "uniqueItems": true,
             "items":
             {
                 "type" : "string",
                 "enum" : ["CCMP", "CCMP-256", "GCMP", "GCMP-256", "AES128_CCM", "TKIP" ]
             }
+        },
+        "management_cipher":
+        {
+            "type" : "string",
+            "description": "Management protection 802.11w cipher.",
+            "enum" : ["CCMP", "CCMP-256", "GCMP", "GCMP-256"]
         },
         "group_key_update":
         {
@@ -105,7 +113,12 @@
         {
             "type" : "array",
             "description": "List of allowed dh groups. Used in WPA3.",
-            "enum" : [19, 20, 21]
+            "uniqueItems": true,
+            "items" :
+            {
+                "type" : "integer",
+                "enum" : [19, 20, 21]
+            }
         }
     }
 }
